@@ -7,4 +7,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Cryptography\" />
+    <None Remove="BouncyCastle" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Cryptography\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="BouncyCastle" Version="1.8.9" />
+  </ItemGroup>
 </Project>

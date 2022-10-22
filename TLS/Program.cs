@@ -1,9 +1,13 @@
 ﻿using System.Net.Sockets;
 using TLS;
+using TLS.Cryptography;
+
+KeyPair keyPair = new KeyPair();
 
 List<TlsCipherSuite> cipherSuites = new List<TlsCipherSuite>();
 List<TlsExtension> extensions = new List<TlsExtension>();
 
+extensions.Add(new TlsExtension(new TlsKeyShareExtension(new Dictionary<TlsNamedGroup, byte[]>() { { TlsNamedGroup.X25519, keyPair.PublicKey } })));
 extensions.Add(new TlsExtension(new TlsSupportedVersionsExtension(new List<TlsProtocolVersion>() { TlsProtocolVersion.TLS_1_3 })));
 extensions.Add(new TlsExtension(new TlsSupportedGroupsExtension(new List<TlsNamedGroup>() { TlsNamedGroup.X25519, TlsNamedGroup.X448 })));
 extensions.Add(new TlsExtension(new TlsSupportedSignatureAlgorithmsExtension(new List<TlsSignatureScheme>() { TlsSignatureScheme.ECDSA_SECP256R1_SHA256, TlsSignatureScheme.ECDSA_SECP384R1_SHA384, TlsSignatureScheme.ECDSA_SECP521R1_SHA512 })));
@@ -30,13 +34,21 @@ using (NetworkStream ns = tc.GetStream())
     ns.Write(packet.ToArray(), 0, packet.Count);
     ns.Flush();
 
-    byte[] buffer = new byte[17000];
-    int bytes = ns.Read(buffer, 0, 17000);
+    List<byte> networkBuffer = new List<byte>();
+    byte[] buffer = new byte[16000];
+    int bytesRead = ns.Read(buffer);
 
-    ITlsContent contentReceived = new TlsMessageReader(new List<byte>(buffer.Take(bytes))).Read();
+    MemoryStream memoryStream = new MemoryStream(buffer, 0, bytesRead);
+    TlsRecordReader recordReader = new TlsRecordReader(memoryStream);
+    ITlsContent contentReceived = recordReader.ReadRecord();
+
     if (contentReceived is TlsAlert alert)
     {
         Console.WriteLine($"{alert.AlertLevel} - {alert.AlertDescription}");
+    }
+    else
+    {
+        Console.WriteLine("Here");
     }
 }
 

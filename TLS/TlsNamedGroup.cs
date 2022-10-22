@@ -8,6 +8,7 @@
         public static readonly TlsNamedGroup X25519 = new TlsNamedGroup(0x00, 0x1D);
         public static readonly TlsNamedGroup X448 = new TlsNamedGroup(0x00, 0x1E);
 
+        public uint Size => 2;
         public byte First { get; }
         public byte Second { get; }
 
@@ -16,8 +17,6 @@
             First = first;
             Second = second;
         }
-
-        public uint Size => 2;
 
         public void Write(List<byte> output)
         {

@@ -1,4 +1,38 @@
 ﻿<Properties StartupConfiguration="{9E4AE350-530A-4AD4-8B5A-7BD8834AE85E}|Default">
-  <MonoDevelop.Ide.ItemProperties.TLS FirstBuild="True" />
   <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/rhemmila/Projects/TLS/TLS/TlsRecordReader.cs" relfile="TLS/TlsRecordReader.cs" line="80" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="TLS/TlsHandshake.cs">
+    <Files>
+      <File FileName="TLS/TlsClientHello.cs" Line="17" Column="45" />
+      <File FileName="TLS/TlsCipherSuite.cs" Line="1" Column="1" />
+      <File FileName="TLS/Program.cs" Line="44" Column="31" />
+      <File FileName="TLS/TlsMessageReader.cs" Line="21" Column="72" />
+      <File FileName="TLS/NetworkBinaryReader.cs" Line="81" Column="22" />
+      <File FileName="TLS/TlsHandshakeType.cs" Line="1" Column="1" />
+      <File FileName="TLS/TlsNameType.cs" Line="1" Column="1" />
+      <File FileName="TLS/TlsProtocolVersion.cs" Line="1" Column="1" />
+      <File FileName="TLS/TlsHandshake.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="TLS" expanded="True">
+            <Node name="TLS" expanded="True">
+              <Node name="TlsHandshake.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.TLS PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

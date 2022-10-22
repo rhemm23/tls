@@ -22,7 +22,7 @@
 
             if (_data.Count != recordLength + 5)
             {
-                throw new Exception("Record length in TLS header does not match the data present");
+                //throw new Exception("Record length in TLS header does not match the data present");
             }
 
             switch (contentType)
@@ -30,9 +30,16 @@
                 case TlsContentType.Alert:
                     return new TlsAlert((TlsAlertLevel)_data[5], (TlsAlertDescription)_data[6]);
 
-                default:
+                case TlsContentType.Handshake:
+                    TlsHandshakeType handshakeType = (TlsHandshakeType)_data[5];
+                    uint size = ((uint)_data[6] << 16) | ((uint)_data[7] << 8) | _data[8];
+                    if (handshakeType == TlsHandshakeType.ServerHello)
+                    {
+                        Console.WriteLine("here");
+                    }
                     throw new NotImplementedException();
             }
+            return null;
         }
     }
 }
